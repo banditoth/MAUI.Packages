@@ -1,0 +1,97 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <UseMaui>true</UseMaui>
+    <SingleProject>true</SingleProject>
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
+    <EmitCompilerGeneratedFiles>true</EmitCompilerGeneratedFiles>
+    <CompilerGeneratedFilesOutputPath>$(BaseIntermediateOutputPath)\GeneratedFiles</CompilerGeneratedFilesOutputPath>
+
+
+    <TargetFrameworks>net6.0;net6.0-android;net6.0-ios;net6.0-maccatalyst</TargetFrameworks>
+    <TargetFrameworks Condition="$([MSBuild]::IsOSPlatform('windows'))">$(TargetFrameworks);net6.0-windows10.0.19041.0</TargetFrameworks>
+
+
+    <SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'maccatalyst'">14.0</SupportedOSPlatformVersion>
+    <SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'windows'">10.0.17763.0</SupportedOSPlatformVersion>
+    <SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'ios'">14.2</SupportedOSPlatformVersion>
+    <SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'android'">21.0</SupportedOSPlatformVersion>
+  </PropertyGroup>
+
+  <PropertyGroup>
+
+    <PackageReleaseNotes>TBD</PackageReleaseNotes>
+    <AssemblyVersion>1.0.0.0</AssemblyVersion>
+    <AssemblyFileVersion>1.0.0.0</AssemblyFileVersion>
+    <Version>1.0.0-pre1</Version>
+    <PackageVersion>$(Version)$(VersionSuffix)</PackageVersion>
+
+
+    <PackageId>banditoth.MAUI.MVVM</PackageId>
+    <Title>banditoth.MAUI.MVVM</Title>
+    <Description>A MVVM navigator following a ViewModel first approach for .NET MAUI</Description>
+    <Summary>A MVVM navigator following a ViewModel first approach for .NET MAUI</Summary>
+    <Owners>banditoth.net</Owners>
+    <Authors>banditoth.net</Authors>
+    <NeutralLanguage>en</NeutralLanguage>
+    <Product>MAUI.Packages (MVVM)</Product>
+    <Copyright>© banditoth.net. All rights reserved.</Copyright>
+    <GitInfoReportImportance>high</GitInfoReportImportance>
+    <PackageProjectUrl>https://github.com/banditoth/MAUI.Packages</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/banditoth/MAUI.Packages</RepositoryUrl>
+    <DefineConstants>$(DefineConstants);</DefineConstants>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <PackageIcon>icon.png</PackageIcon>
+    <Product>$(AssemblyName) ($(TargetFramework))</Product>
+    <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
+    <PackageTags>dotnet,maui,mvvm,mvvmnavigator</PackageTags>
+    <Configurations>Debug;Release</Configurations>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="Interfaces\" />
+    <None Remove="Implementations\" />
+    <None Remove="Entities\" />
+    <None Remove="CommunityToolkit.Mvvm" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="readme.txt" pack="true" PackagePath="." />
+    <None Include="..\..\icon.png" PackagePath="icon.png" Pack="true" />
+  </ItemGroup>
+
+  <ItemGroup Condition="$(TargetFramework.StartsWith('net6.0-maccatalyst')) != true">
+    <Compile Remove="**\*.macos.cs" />
+    <None Include="**\*.macos.cs" Exclude="$(DefaultItemExcludes);$(DefaultExcludesInProjectFolder)" />
+    <Compile Remove="**\macos\**\*.cs" />
+    <None Include="**\macos\**\*.cs" Exclude="$(DefaultItemExcludes);$(DefaultExcludesInProjectFolder)" />
+  </ItemGroup>
+  <ItemGroup Condition="$(TargetFramework.Contains('-windows')) != true ">
+    <Compile Remove="**\*.windows.cs" />
+    <None Include="**\*.windows.cs" Exclude="$(DefaultItemExcludes);$(DefaultExcludesInProjectFolder)" />
+    <Compile Remove="**\windows\**\*.cs" />
+    <None Include="**\windows\**\*.cs" Exclude="$(DefaultItemExcludes);$(DefaultExcludesInProjectFolder)" />
+  </ItemGroup>
+  <ItemGroup Condition="$(TargetFramework.StartsWith('net6.0-ios')) != true">
+    <Compile Remove="**\**\*.ios.cs" />
+    <None Include="**\**\*.ios.cs" Exclude="$(DefaultItemExcludes);$(DefaultExcludesInProjectFolder)" />
+    <Compile Remove="**\ios\**\*.cs" />
+    <None Include="**\ios\**\*.cs" Exclude="$(DefaultItemExcludes);$(DefaultExcludesInProjectFolder)" />
+  </ItemGroup>
+  <ItemGroup Condition="$(TargetFramework.StartsWith('net6.0-android')) != true ">
+    <Compile Remove="**\**\*.android.cs" />
+    <None Include="**\**\*.android.cs" Exclude="$(DefaultItemExcludes);$(DefaultExcludesInProjectFolder)" />
+    <Compile Remove="**\android\**\*.cs" />
+    <None Include="**\android\**\*.cs" Exclude="$(DefaultItemExcludes);$(DefaultExcludesInProjectFolder)" />
+  </ItemGroup>
+
+
+
+  <ItemGroup>
+    <Folder Include="Interfaces\" />
+    <Folder Include="Implementations\" />
+    <Folder Include="Entities\" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="CommunityToolkit.Mvvm" Version="8.0.0-preview3" />
+  </ItemGroup>
+</Project>
