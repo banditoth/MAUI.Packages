@@ -5,15 +5,15 @@ namespace banditoth.MAUI.MVVM.Interfaces
 {
 	public interface IViewModelConnector
 	{
-        public void Register(Type viewModelType, Type viewType);
+        void Register(Type viewModelType, Type viewType);
 
-        public void Remove(Type viewModelType);
+        void Remove(Type viewModelType);
 
-        public bool IsContainsViewModel(Type viewModelType);
+        bool IsContainsViewModel(Type viewModelType);
 
-        public Type GetViewType(Type viewModelType);
+        Type GetViewType(Type viewModelType);
 
-        public KeyValuePair<Type, Type>[] GetRegisteredTypes();
+        KeyValuePair<Type, Type>[] GetRegisteredTypes();
     }
 }
 
