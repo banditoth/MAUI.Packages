@@ -19,6 +19,10 @@ variables:
 #The build has 3 seperate tasks run under 1 step
 steps:
 
+- task: CmdLine@2
+  inputs:
+    script: 'dotnet workload install maui'
+    
 - task: DotNetCoreCLI@2
   inputs:
     command: 'build'
