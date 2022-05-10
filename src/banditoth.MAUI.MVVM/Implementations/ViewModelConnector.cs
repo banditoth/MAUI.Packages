@@ -42,7 +42,7 @@ namespace banditoth.MAUI.MVVM.Implementations
                 throw new Exception($"The type ({viewType.Name}) is already registered");
             }
 
-            _connections.Add(viewType, viewType);
+            _connections.Add(viewModelType, viewType);
         }
 
         public void Remove(Type viewModelType)
@@ -62,12 +62,12 @@ namespace banditoth.MAUI.MVVM.Implementations
 
         public Type GetViewType(Type viewModelType)
         {
-            if (IsContainsViewModel(viewModelType))
+            if (IsContainsViewModel(viewModelType) == false)
             {
                 throw new Exception($"The type ({viewModelType.Name}) is not registered");
             }
 
-            return _connections[viewModelType];
+            return _connections.SingleOrDefault(z=> z.Key == viewModelType).Value;
         }
 
         public KeyValuePair<Type, Type>[] GetRegisteredTypes()

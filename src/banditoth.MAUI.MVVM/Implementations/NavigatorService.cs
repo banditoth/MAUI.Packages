@@ -23,7 +23,7 @@ namespace banditoth.MAUI.MVVM.Implementations
             return GetInstance<TViewmodel>(null, false);
         }
 
-        public Page GetInstance<TViewModel>(Action<TViewModel, Page> initialiser = null, bool initalizeOnDifferentThread = true) where TViewModel : BaseViewModel
+        public Page GetInstance<TViewModel>(Action<TViewModel, Page> initialiser, bool initalizeOnDifferentThread = true) where TViewModel : BaseViewModel
         {
             if (connector.IsContainsViewModel(typeof(TViewModel)) == false)
             {
@@ -32,13 +32,18 @@ namespace banditoth.MAUI.MVVM.Implementations
 
             Type pageType = connector.GetViewType(typeof(TViewModel));
 
-            return GetInstance(typeof(TViewModel), pageType, (vm, v) => { initialiser.Invoke((TViewModel)vm, v); }, initalizeOnDifferentThread);
+            if (pageType == null)
+            {
+                throw new Exception("Could not determine View type for ViewModel: " + typeof(TViewModel).AssemblyQualifiedName);
+            }
+
+            return GetInstance(typeof(TViewModel), pageType, initialiser != null ? (vm, v) => { initialiser?.Invoke((TViewModel)vm, v); } : null, initalizeOnDifferentThread);
         }
 
 
-        public Page GetInstance<TViewModel, TView>(Action<TViewModel, TView> initialiser = null, bool initalizeOnDifferentThread = true) where TViewModel : BaseViewModel where TView : Page
+        public Page GetInstance<TViewModel, TView>(Action<TViewModel, TView> initialiser, bool initalizeOnDifferentThread = true) where TViewModel : BaseViewModel where TView : Page
         {
-            return GetInstance(typeof(TViewModel), typeof(TView), (vm, v) => { initialiser.Invoke((TViewModel)vm, (TView)v); }, initalizeOnDifferentThread);
+            return GetInstance(typeof(TViewModel), typeof(TView), initialiser != null ? (vm, v) => { initialiser.Invoke((TViewModel)vm, (TView)v); } : null, initalizeOnDifferentThread);
         }
 
         public Page GetInstance<TViewModel, TView>()

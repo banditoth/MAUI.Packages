@@ -8,11 +8,12 @@ namespace banditoth.MAUI.MVVM.Interfaces
 	{
 		Page GetInstance<TViewmodel>() where TViewmodel : BaseViewModel;
 
-		Page GetInstance<TViewModel>(Action<TViewModel, Page> initialiser = null, bool initalizeOnDifferentThread = true) where TViewModel : BaseViewModel;
-
-		Page GetInstance<TViewModel, TView>(Action<TViewModel, TView> initialiser = null, bool initalizeOnDifferentThread = true) where TViewModel : BaseViewModel where TView : Page;
+		Page GetInstance<TViewModel>(Action<TViewModel, Page> initialiser, bool initalizeOnDifferentThread = true) where TViewModel : BaseViewModel;
 
 		Page GetInstance<TViewModel, TView>();
+
+		Page GetInstance<TViewModel, TView>(Action<TViewModel, TView> initialiser, bool initalizeOnDifferentThread = true) where TViewModel : BaseViewModel where TView : Page;
+
 	}
 }
 

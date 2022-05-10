@@ -3,7 +3,7 @@ using Microsoft.Maui.Controls;
 
 namespace banditoth.MAUI.MVVM.Entities
 {
-    public class BaseView : Page
+    public class BaseView : ContentPage
     {
         public BaseView()
         {
