@@ -9,10 +9,10 @@ namespace banditoth.MAUI.MVVM.Implementations
 {
     internal class NavigatorService : INavigator
     {
-        private readonly IViewModelConnector connector;
+        private readonly IViewModelConnectionBuilder connector;
         private readonly IServiceProvider serviceProvider;
 
-        public NavigatorService(IViewModelConnector connector, IServiceProvider serviceProvider)
+        public NavigatorService(IViewModelConnectionBuilder connector, IServiceProvider serviceProvider)
         {
             this.connector = connector;
             this.serviceProvider = serviceProvider;

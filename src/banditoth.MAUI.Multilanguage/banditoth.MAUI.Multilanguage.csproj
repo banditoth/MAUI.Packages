@@ -28,10 +28,10 @@
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
 
 
-    <PackageId>banditoth.MAUI.MVVM</PackageId>
-    <Title>banditoth.MAUI.MVVM</Title>
-    <Description>A MVVM navigator following a ViewModel first approach for .NET MAUI</Description>
-    <Summary>A MVVM navigator following a ViewModel first approach for .NET MAUI</Summary>
+    <PackageId>banditoth.MAUI.Multilanguage</PackageId>
+    <Title>banditoth.MAUI.Multilanguage</Title>
+    <Description>A multilingual solution for .NET MAUI</Description>
+    <Summary>A multilingual solution for .NET MAUI</Summary>
     <Owners>banditoth.net</Owners>
     <Authors>banditoth.net</Authors>
     <NeutralLanguage>en</NeutralLanguage>
@@ -45,15 +45,16 @@
     <PackageIcon>icon.png</PackageIcon>
     <Product>$(AssemblyName) ($(TargetFramework))</Product>
     <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
-    <PackageTags>dotnet,maui,mvvm,mvvmnavigator</PackageTags>
+    <PackageTags>dotnet,maui,multilingual,multilang</PackageTags>
     <Configurations>Debug;Release</Configurations>
   </PropertyGroup>
+
 
   <ItemGroup>
     <None Remove="Interfaces\" />
     <None Remove="Implementations\" />
-    <None Remove="Entities\" />
-    <None Remove="CommunityToolkit.Mvvm" />
+    <None Remove="Microsoft.Extensions.DependencyInjection.Abstractions, Version=6.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60" />
+    <None Remove="Exceptions\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="readme.txt" pack="true" PackagePath="." />
@@ -84,15 +85,12 @@
     <Compile Remove="**\android\**\*.cs" />
     <None Include="**\android\**\*.cs" Exclude="$(DefaultItemExcludes);$(DefaultExcludesInProjectFolder)" />
   </ItemGroup>
-
-
-
   <ItemGroup>
     <Folder Include="Interfaces\" />
     <Folder Include="Implementations\" />
-    <Folder Include="Entities\" />
+    <Folder Include="Exceptions\" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="CommunityToolkit.Mvvm" Version="8.0.0-preview3" />
+    <Reference Include="Microsoft.Extensions.DependencyInjection.Abstractions, Version=6.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60" />
   </ItemGroup>
 </Project>

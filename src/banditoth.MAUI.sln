@@ -5,6 +5,8 @@ VisualStudioVersion = 25.0.1700.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "banditoth.MAUI.MVVM", "banditoth.MAUI.MVVM\banditoth.MAUI.MVVM.csproj", "{3AC066E0-788E-445A-96E8-356F2DB5477B}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "banditoth.MAUI.Multilanguage", "banditoth.MAUI.Multilanguage\banditoth.MAUI.Multilanguage.csproj", "{E4AED65E-CCC2-427F-B25A-21E6EE9E62C5}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{3AC066E0-788E-445A-96E8-356F2DB5477B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3AC066E0-788E-445A-96E8-356F2DB5477B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3AC066E0-788E-445A-96E8-356F2DB5477B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E4AED65E-CCC2-427F-B25A-21E6EE9E62C5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E4AED65E-CCC2-427F-B25A-21E6EE9E62C5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E4AED65E-CCC2-427F-B25A-21E6EE9E62C5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E4AED65E-CCC2-427F-B25A-21E6EE9E62C5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace banditoth.MAUI.MVVM.Interfaces
 {
-	public interface IViewModelConnector
+	public interface IViewModelConnectionBuilder
 	{
         void Register(Type viewModelType, Type viewType);
 

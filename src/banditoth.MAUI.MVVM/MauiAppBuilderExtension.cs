@@ -11,9 +11,9 @@ namespace banditoth.MAUI.MVVM
 {
     public static class MauiAppBuilderExtension
     {
-        public static MauiAppBuilder ConfigureMvvm(this MauiAppBuilder builder, Action<IViewModelConnector> configureDelegate)
+        public static MauiAppBuilder ConfigureMvvm(this MauiAppBuilder builder, Action<IViewModelConnectionBuilder> configureDelegate)
         {
-            IViewModelConnector mvvmBuilder = new ViewModelConnectorService();
+            IViewModelConnectionBuilder mvvmBuilder = new ViewModelConnectorService();
 
             if (configureDelegate != null)
             {
@@ -28,7 +28,7 @@ namespace banditoth.MAUI.MVVM
                     builder.Services.TryAddTransient(connection.Value);
             }
 
-            builder.Services.TryAdd(new ServiceDescriptor(typeof(IViewModelConnector), mvvmBuilder));
+            builder.Services.TryAdd(new ServiceDescriptor(typeof(IViewModelConnectionBuilder), mvvmBuilder));
             builder.Services.TryAdd(new ServiceDescriptor(typeof(INavigator), typeof(NavigatorService), ServiceLifetime.Singleton));
 
             return builder;

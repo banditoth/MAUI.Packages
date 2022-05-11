@@ -6,7 +6,7 @@ using banditoth.MAUI.MVVM.Interfaces;
 
 namespace banditoth.MAUI.MVVM.Implementations
 {
-    internal class ViewModelConnectorService : IViewModelConnector
+    internal class ViewModelConnectorService : IViewModelConnectionBuilder
     {
         private readonly Dictionary<Type, Type> _connections = new Dictionary<Type, Type>();
 
