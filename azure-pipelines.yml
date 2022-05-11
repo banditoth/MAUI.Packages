@@ -5,7 +5,7 @@
 
 # the build will trigger on any changes to the master branch
 trigger:
-- master
+- main
 
 # the build will run on a Microsoft hosted agent, using the lastest Windows VM Image
 pool:
