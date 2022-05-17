@@ -90,6 +90,90 @@ Register the ViewModel and View connections with the configuration builder's ```
 	}
 ```
 
+## banditoth.MAUI.Multilanguage
+
+![nuGet version](https://img.shields.io/nuget/vpre/banditoth.MAUI.Multilanguage)
+![Nuget](https://img.shields.io/nuget/dt/banditoth.MAUI.Multilanguage)
+[View package on NuGet.org](https://www.nuget.org/packages/banditoth.MAUI.Multilanguage/)
+
+A multilanguage translation provider for XAML and for code behind.
+
+**Usage**
+
+Create your ```resx``` files in your solution. For example if your applications default language is English, create a ```Translations.en.resx``` file, which contains the english translations, and if you want to support Hungarian language, you need to create a ```Translations.hu.resx``` file, which will contain the hungarian key value pairs.
+You can add different resx files, also from different assembly. Just call the ```UseResource``` when initalizing the plugin multiple times.
+
+Usage in cs files:
+Inject or resolve an ITranslator instance from the dependency continaer.
+
+```cs
+public string Foo()
+{
+	// Get the currently set culture
+	if(translator.CurrentCulture.Name != "English")
+		// Set the culture by calling SetCurrentCulture
+		translator.SetCurrentCulture(new CultureInfo("en"));
+	
+	// Get the translation from resources
+	return translator.GetTranslation("The_Translation_Key")
+}
+```
+
+
+Usage in XAML files:
+Start using translations in your XAML by adding reference to the ```clr-namespace``` and using the markup extension:
+
+```xml
+xmlns:multilanguage="clr-namespace:banditoth.MAUI.Multilanguage"
+```
+
+Whenever you need a translation, you can use:
+
+```xml
+<Label IsVisible="True"
+       Text="{multilanguage:Translation Key=TranslationKey}"/>
+```
+
+**Initalization**
+
+Initalize the plugin within your ```MauiProgram.cs```'s ```CreateMauiApp``` method.
+Use the ```.ConfigureMultilanguage``` extension method with the ```using banditoth.MAUI.Multilanguage```;
+
+```cs
+		public static MauiApp CreateMauiApp()
+		{
+			var builder = MauiApp.CreateBuilder();
+			builder
+				.UseMauiApp<App>()
+				.ConfigureFonts(fonts =>
+				{
+					fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
+					fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
+				})
+				.ConfigureMultilanguage(config =>
+				{
+					// Set the source of the translations
+					// You can use multiple resource managers by calling UseResource multiple times.
+					config.UseResource(YourAppResource.ResourceManager);
+					config.UseResource(YourAnotherAppResource.ResourceManager);
+
+					// If the app is not storing last used culture, this culture will be used by default
+					config.UseDefaultCulture(new System.Globalization.CultureInfo("en-US"));
+
+					// Determines whether the app should store the last used culture
+					config.StoreLastUsedCulture(true);
+
+					// Determines whether the app should throw an exception if a translation is not found.
+					config.ThrowExceptionIfTranslationNotFound(false);
+
+					// You can set custom translation not found text by calling this method 
+					config.SetTranslationNotFoundText("Transl_Not_Found:", appendTranslationKey: true);
+				});
+
+			return builder.Build();
+		}
+```
+
 # Icon
 
 https://www.flaticon.com/free-icons/responsive"
