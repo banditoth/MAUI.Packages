@@ -27,7 +27,8 @@ namespace banditoth.MAUI.Multilanguage.Implementations
 
             if (settings.IsStoringLastUsedCulture)
             {
-                SetCurrentCulture(new CultureInfo(Preferences.Get(LastUsedCulturePreferenceKey, null)) ?? settings.DefaultCulture);
+                string lastUsedLanguage = Preferences.Get(LastUsedCulturePreferenceKey, null);
+                SetCurrentCulture(lastUsedLanguage == null ? settings.DefaultCulture : new CultureInfo(lastUsedLanguage));
             }
         }
 
