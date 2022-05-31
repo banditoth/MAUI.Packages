@@ -13,7 +13,7 @@ A toolkit for .NET MAUI, containing useful stuff to ease development for MAUI ap
 
 **Azure DevOps**
 
-![Azure DevOps builds](https://img.shields.io/azure-devops/build/bitfoxhungary/MAUI.Packages/5?label=Build%20status)
+[![Build Status](https://dev.azure.com/bitfoxhungary/MAUI.Packages/_apis/build/status/banditoth.MAUI.Packages?branchName=main)](https://dev.azure.com/bitfoxhungary/MAUI.Packages/_build/latest?definitionId=8&branchName=main)
 
 [View Build pipeline on AzureDevOps](https://dev.azure.com/bitfoxhungary/MAUI.Packages/_build)
 
