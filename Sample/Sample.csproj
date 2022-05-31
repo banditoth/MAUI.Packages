@@ -1,0 +1,106 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<TargetFrameworks>net6.0-android;net6.0-ios;net6.0-maccatalyst</TargetFrameworks>
+		<TargetFrameworks Condition="$([MSBuild]::IsOSPlatform('windows')) and '$(MSBuildRuntimeType)' == 'Full'">$(TargetFrameworks);net6.0-windows10.0.19041</TargetFrameworks>
+		<OutputType>Exe</OutputType>
+		<RootNamespace>Sample</RootNamespace>
+		<UseMaui>true</UseMaui>
+		<SingleProject>true</SingleProject>
+		<ImplicitUsings>enable</ImplicitUsings>
+
+		<!-- Display name -->
+		<ApplicationTitle>Sample</ApplicationTitle>
+
+		<!-- App Identifier -->
+		<ApplicationId>com.companyname.sample</ApplicationId>
+		<ApplicationId Condition="$(TargetFramework.Contains('-windows'))">d053dbbe-7455-47f4-a8a2-e69a3580e060</ApplicationId>
+
+		<!-- Versions -->
+		<ApplicationDisplayVersion>1.0</ApplicationDisplayVersion>
+		<ApplicationVersion>1</ApplicationVersion>
+
+		<SupportedOSPlatformVersion Condition="'$(TargetFramework)' == 'net6.0-ios'">14.2</SupportedOSPlatformVersion>
+		<SupportedOSPlatformVersion Condition="'$(TargetFramework)' == 'net6.0-maccatalyst'">14.0</SupportedOSPlatformVersion>
+		<SupportedOSPlatformVersion Condition="'$(TargetFramework)' == 'net6.0-android'">21.0</SupportedOSPlatformVersion>
+		<SupportedOSPlatformVersion Condition="$(TargetFramework.Contains('-windows'))">10.0.17763.0</SupportedOSPlatformVersion>
+		<TargetPlatformMinVersion Condition="$(TargetFramework.Contains('-windows'))">10.0.17763.0</TargetPlatformMinVersion>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<!-- App Icon -->
+		<MauiIcon Include="Resources\appicon.svg" ForegroundFile="Resources\appiconfg.svg" Color="#512BD4" />
+
+		<!-- Splash Screen -->
+		<MauiSplashScreen Include="Resources\appiconfg.svg" Color="#512BD4" BaseSize="128,128" />
+
+		<!-- Images -->
+		<MauiImage Include="Resources\Images\*" />
+		<MauiFont Include="Resources\Fonts\*" />
+
+		<!-- Raw Assets (also remove the "Resources\Raw" prefix) -->
+		<MauiAsset Include="Resources\Raw\**" LogicalName="%(RecursiveDir)%(Filename)%(Extension)" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <None Remove="banditoth.MAUI.MVVM" />
+	  <None Remove="banditoth.MAUI.Multilanguage" />
+	  <None Remove="ViewModels\" />
+	  <None Remove="Views\" />
+	  <None Remove="Resources\Translations\" />
+	  <None Remove="AnotherLibrary\obj\Debug\netstandard2.1\AnotherLibrary.GeneratedMSBuildEditorConfig.editorconfig" />
+	  <None Remove="AnotherLibrary\obj\Debug\netstandard2.1\AnotherLibrary.AssemblyInfoInputs.cache" />
+	  <None Remove="AnotherLibrary\obj\AnotherLibrary.csproj.nuget.g.props" />
+	  <None Remove="AnotherLibrary\obj\AnotherLibrary.csproj.nuget.g.targets" />
+	  <None Remove="AnotherLibrary\obj\project.assets.json" />
+	  <None Remove="AnotherLibrary\obj\project.nuget.cache" />
+	  <None Remove="AnotherLibrary\obj\AnotherLibrary.csproj.nuget.dgspec.json" />
+	  <None Remove="AnotherLibrary\obj\Debug\netstandard2.1\AnotherLibrary.assets.cache" />
+	  <None Remove="AnotherLibrary\obj\Debug\netstandard2.1\AnotherLibrary.csproj.AssemblyReference.cache" />
+	</ItemGroup>
+	<ItemGroup>
+	  <PackageReference Include="banditoth.MAUI.MVVM" Version="1.0.0-pre1" />
+	  <PackageReference Include="banditoth.MAUI.Multilanguage" Version="1.0.0-pre2" />
+	</ItemGroup>
+	<ItemGroup>
+	  <Folder Include="ViewModels\" />
+	  <Folder Include="Views\" />
+	  <Folder Include="Resources\Translations\" />
+	</ItemGroup>
+	<ItemGroup>
+	  <MauiXaml Condition=" '$(EnableDefaultXamlItems)' == 'true' " Update="Views\MainPage.xaml">
+	    <SubType>Designer</SubType>
+	  </MauiXaml>
+	  <MauiXaml Condition=" '$(EnableDefaultXamlItems)' == 'true' " Update="Views\MainScreenView.xaml">
+	    <SubType>Designer</SubType>
+	  </MauiXaml>
+	  <MauiXaml Condition=" '$(EnableDefaultXamlItems)' == 'true' " Update="Views\MainScreenView %28copy%29.xaml">
+	    <SubType>Designer</SubType>
+	  </MauiXaml>
+	  <MauiXaml Condition=" '$(EnableDefaultXamlItems)' == 'true' " Update="Views\AboutView.xaml">
+	    <SubType>Designer</SubType>
+	  </MauiXaml>
+	</ItemGroup>
+	<ItemGroup>
+	  <Compile Remove="AnotherLibrary\Class1.cs" />
+	  <Compile Remove="AnotherLibrary\obj\Debug\netstandard2.1\.NETStandard,Version=v2.1.AssemblyAttributes.cs" />
+	  <Compile Remove="AnotherLibrary\obj\Debug\netstandard2.1\AnotherLibrary.AssemblyInfo.cs" />
+	</ItemGroup>
+	<ItemGroup>
+	  <Compile Condition=" '$(EnableDefaultCompileItems)' == 'true' " Update="Views\MainScreenView.xaml.cs">
+	    <DependentUpon>MainScreenView.xaml</DependentUpon>
+	  </Compile>
+	  <Compile Update="Resources\Translations\SampleAppTranslations.en.Designer.cs">
+	    <DependentUpon>SampleAppTranslations.en.resx</DependentUpon>
+	  </Compile>
+	  <Compile Condition=" '$(EnableDefaultCompileItems)' == 'true' " Update="Resources\Translations\AnotherLibraryTranslations.Designer.cs">
+	    <DependentUpon>AnotherLibraryTranslations.resx</DependentUpon>
+	  </Compile>
+	</ItemGroup>
+	<ItemGroup>
+	  <EmbeddedResource Update="Resources\Translations\SampleAppTranslations.en.resx">
+	    <Generator>PublicResXFileCodeGenerator</Generator>
+	    <LastGenOutput>SampleAppTranslations.Designer.cs</LastGenOutput>
+	  </EmbeddedResource>
+	</ItemGroup>
+</Project>

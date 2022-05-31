@@ -1,0 +1,20 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<entities:BaseView  xmlns:entities="clr-namespace:banditoth.MAUI.MVVM.Entities;assembly=banditoth.MAUI.MVVM"
+                    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:translator="clr-namespace:banditoth.MAUI.Multilanguage;assembly=banditoth.MAUI.Multilanguage"
+             x:Class="Sample.Views.MainScreenView">
+    <VerticalStackLayout HorizontalOptions="Fill"
+                         VerticalOptions="Fill">
+        <Button Text="About this package"
+                Command="{Binding Path=DisplayAboutPageCommand}"/>
+
+        <Label Text="{translator:Translation SampleText}"/>
+
+        <Button Text="Change language"
+                Command="{Binding Path=DisplayAboutPageCommand}"/>
+
+        <Label Text="{translator:Translation AnotherAssemblyText}"/>
+
+    </VerticalStackLayout>
+</entities:BaseView>
