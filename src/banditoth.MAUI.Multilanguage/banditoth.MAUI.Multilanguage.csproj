@@ -21,9 +21,9 @@
   <PropertyGroup>
 
     <PackageReleaseNotes>TBD</PackageReleaseNotes>
-    <AssemblyVersion>1.0.0.1</AssemblyVersion>
-    <AssemblyFileVersion>1.0.0.1</AssemblyFileVersion>
-    <Version>1.0.0-pre2</Version>
+    <AssemblyVersion>1.0.0.2</AssemblyVersion>
+    <AssemblyFileVersion>1.0.0.2</AssemblyFileVersion>
+    <Version>1.0.0-pre3</Version>
     <PackageVersion>$(Version)$(VersionSuffix)</PackageVersion>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
 
@@ -55,6 +55,8 @@
     <None Remove="Implementations\" />
     <None Remove="Microsoft.Extensions.DependencyInjection.Abstractions, Version=6.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60" />
     <None Remove="Exceptions\" />
+    <None Remove="Microsoft.Maui.Extensions" />
+    <None Remove="Microsoft.Maui.Dependencies" />
   </ItemGroup>
   <ItemGroup>
     <None Include="readme.txt" pack="true" PackagePath="." />
@@ -92,5 +94,9 @@
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Microsoft.Extensions.DependencyInjection.Abstractions, Version=6.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Microsoft.Maui.Extensions" Version="6.0.312" />
+    <PackageReference Include="Microsoft.Maui.Dependencies" Version="6.0.312" />
   </ItemGroup>
 </Project>
