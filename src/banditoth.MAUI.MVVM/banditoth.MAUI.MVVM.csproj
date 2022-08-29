@@ -95,8 +95,8 @@
     <Folder Include="Entities\" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="CommunityToolkit.Mvvm" Version="8.0.0-preview3" />
-    <PackageReference Include="Microsoft.Maui.Extensions" Version="6.0.312" />
-    <PackageReference Include="Microsoft.Maui.Dependencies" Version="6.0.312" />
+    <PackageReference Include="CommunityToolkit.Mvvm" Version="8.0.0" />
+    <PackageReference Include="Microsoft.Maui.Extensions" Version="6.0.486" />
+    <PackageReference Include="Microsoft.Maui.Dependencies" Version="6.0.486" />
   </ItemGroup>
 </Project>
