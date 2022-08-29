@@ -18,7 +18,6 @@ namespace banditoth.MAUI.Multilanguage.Implementations
             private set;
         }
 
-        private readonly List<ResourceManager> resourceManagers = new List<ResourceManager>();
         private readonly ITranslatorSettings settings;
 
         public TranslatorService(ITranslatorSettings settings)
@@ -39,7 +38,7 @@ namespace banditoth.MAUI.Multilanguage.Implementations
 
         public string GetTranslation(string key)
         {
-            foreach (var manager in resourceManagers)
+            foreach (var manager in settings.ResourceManagers)
             {
                 var result = manager.GetString(key, CurrentCulture);
 
@@ -59,6 +58,8 @@ namespace banditoth.MAUI.Multilanguage.Implementations
                 throw new ArgumentNullException(nameof(culture), "Providing culture is mandatory");
 
             CurrentCulture = culture;
+            // https://github.com/dotnet/maui/issues/8824 - Xaml MarkupExtensios are not receiving all services from service collection
+            MAUIServiceProviderWorkaround.TranslatorBinder?.Invalidate();
 
             if (settings.IsStoringLastUsedCulture == false)
                 return;

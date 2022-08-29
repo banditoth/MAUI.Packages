@@ -1,4 +1,5 @@
 ﻿using System;
+using Microsoft.Maui;
 using Microsoft.Maui.Controls;
 using Microsoft.Maui.Controls.Xaml;
 
@@ -20,7 +21,8 @@ namespace banditoth.MAUI.Multilanguage
             {
                 Mode = BindingMode.OneWay,
                 Path = $"[{Key}]",
-                Source = serviceProvider.GetService(typeof(TranslationBinder)),
+                // https://github.com/dotnet/maui/issues/8824 - Xaml MarkupExtensios are not receiving all services from service collection
+                Source = MAUIServiceProviderWorkaround.TranslatorBinder, // TODO: Get instance from serviceprovider
             };
             return binding;
         }
