@@ -30,6 +30,10 @@ namespace banditoth.MAUI.Multilanguage.Implementations
                 string lastUsedLanguage = Preferences.Get(LastUsedCulturePreferenceKey, null);
                 SetCurrentCulture(lastUsedLanguage == null ? settings.DefaultCulture : new CultureInfo(lastUsedLanguage));
             }
+            else
+            {
+                SetCurrentCulture(settings.DefaultCulture);
+            }
         }
 
 

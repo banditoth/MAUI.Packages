@@ -21,9 +21,9 @@
   <PropertyGroup>
 
     <PackageReleaseNotes>TBD</PackageReleaseNotes>
-    <AssemblyVersion>1.0.1.0</AssemblyVersion>
-    <AssemblyFileVersion>1.0.1.0</AssemblyFileVersion>
-    <Version>1.0.1</Version>
+    <AssemblyVersion>1.0.2.0</AssemblyVersion>
+    <AssemblyFileVersion>1.0.2.0</AssemblyFileVersion>
+    <Version>1.0.2</Version>
     <PackageVersion>$(Version)$(VersionSuffix)</PackageVersion>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
 
