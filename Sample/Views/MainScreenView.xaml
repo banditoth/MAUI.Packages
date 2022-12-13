@@ -6,6 +6,9 @@
              x:Class="Sample.Views.MainScreenView">
     <VerticalStackLayout HorizontalOptions="Fill"
                          VerticalOptions="Fill">
+        <Button Text="Check Jailbreak or Root status"
+                Clicked="Button_Clicked"/>
+
         <Button Text="About this package"
                 Command="{Binding Path=DisplayAboutPageCommand}"/>
 
