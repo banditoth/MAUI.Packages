@@ -30,7 +30,7 @@ namespace banditoth.MAUI.MVVM.Entities
 
         }
 
-		[ICommand]
+		[RelayCommand]
 		public virtual void OnBackButtonPressed()
         {
 
