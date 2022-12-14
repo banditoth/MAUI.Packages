@@ -10,6 +10,7 @@ A toolkit for .NET MAUI, containing useful stuff to ease development for MAUI ap
 | --- | --- |
 | banditoth.MAUI.MVVM | ![nuGet version](https://img.shields.io/nuget/vpre/banditoth.MAUI.MVVM) |
 | banditoth.MAUI.Multilanguage | ![nuGet version](https://img.shields.io/nuget/vpre/banditoth.MAUI.Multilanguage) |
+| banditoth.MAUI.JailbreakDetector | ![nuGet version](https://img.shields.io/nuget/vpre/banditoth.MAUI.JailbreakDetector) |
 
 **Azure DevOps**
 
