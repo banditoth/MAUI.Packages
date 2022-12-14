@@ -56,11 +56,11 @@ public class JailberakDetectorService : IJailbreakDetector
         _configuration = configuration;
     }
 
-    public async ValueTask<ScanResult> GetVulnerabilities()
+    public async ValueTask<ScanResult> ScanExploitsAsync()
     {
         try
         {
-            List<Vulnerability> vulnerabilities = new List<Vulnerability>();
+            List<Exploit> vulnerabilities = new List<Exploit>();
             List<Warning> warnings = new List<Warning>();
             double possibilityScore = 0;
             double maxPossibilityScore = 0;
@@ -72,7 +72,7 @@ public class JailberakDetectorService : IJailbreakDetector
                 {
                     if (Directory.Exists(directoryPath))
                     {
-                        vulnerabilities.Add(new Vulnerability() { VulnerabilityType = Enumerations.VulnerabilityType.DirectoryExists, Path = directoryPath });
+                        vulnerabilities.Add(new Exploit() { VulnerabilityType = Enumerations.VulnerabilityType.DirectoryExists, Path = directoryPath });
                         possibilityScore += ShouldNotExistDirectoryScore;
                     }
                 }
@@ -89,7 +89,7 @@ public class JailberakDetectorService : IJailbreakDetector
                 {
                     if (File.Exists(appPath))
                     {
-                        vulnerabilities.Add(new Vulnerability() { VulnerabilityType = Enumerations.VulnerabilityType.AppInstalled, Path = appPath });
+                        vulnerabilities.Add(new Exploit() { VulnerabilityType = Enumerations.VulnerabilityType.AppInstalled, Path = appPath });
                         possibilityScore += ShouldNotInstalledAppScore;
                     }
                 }
@@ -105,7 +105,7 @@ public class JailberakDetectorService : IJailbreakDetector
                 try
                 {
                     File.CreateText(path + DateTime.Today.ToString("yyyyMMddHHmmss") + ".txt");
-                    vulnerabilities.Add(new Vulnerability() { VulnerabilityType = Enumerations.VulnerabilityType.CanCreateFile, Path = path });
+                    vulnerabilities.Add(new Exploit() { VulnerabilityType = Enumerations.VulnerabilityType.CanCreateFile, Path = path });
                     possibilityScore += ShouldNotWriteHereScore;
                 }
                 catch
@@ -121,7 +121,7 @@ public class JailberakDetectorService : IJailbreakDetector
                 {
                     if (await Launcher.CanOpenAsync(deeplinkUri))
                     {
-                        vulnerabilities.Add(new Vulnerability() { VulnerabilityType = Enumerations.VulnerabilityType.CanOpenDeeplink, Path = deeplinkUri });
+                        vulnerabilities.Add(new Exploit() { VulnerabilityType = Enumerations.VulnerabilityType.CanOpenDeeplink, Path = deeplinkUri });
                         possibilityScore += ShouldNotOpenDeeplinkScore;
                     }
                 }
@@ -133,9 +133,8 @@ public class JailberakDetectorService : IJailbreakDetector
 
             return new ScanResult()
             {
-                Vulnerabilities = vulnerabilities,
+                Exploits = vulnerabilities,
                 Warnings = warnings,
-                PossibilityScore = possibilityScore,
                 PossibilityPercentage = possibilityScore / maxPossibilityScore * 100
             };
         }
@@ -148,9 +147,9 @@ public class JailberakDetectorService : IJailbreakDetector
         }
     }
 
-    public async ValueTask<bool> IsRootedOrJailbroken()
+    public async ValueTask<bool> IsRootedOrJailbrokenAsync()
     {
-        ScanResult result = await GetVulnerabilities();
+        ScanResult result = await ScanExploitsAsync();
 
         return result.PossibilityPercentage >= _configuration.MaximumPossibilityPercentage;
     }

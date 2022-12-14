@@ -73,14 +73,9 @@ Use the ```.ConfigureMultilanguage``` extension method with the ```using bandito
 ```cs
 		public static MauiApp CreateMauiApp()
 		{
-			var builder = MauiApp.CreateBuilder();
-			builder
+			var builder = MauiApp.CreateBuilder()
 				.UseMauiApp<App>()
-				.ConfigureFonts(fonts =>
-				{
-					fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
-					fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
-				})
+				...
 				.ConfigureMultilanguage(config =>
 				{
 					// Set the source of the translations
@@ -104,6 +99,39 @@ Use the ```.ConfigureMultilanguage``` extension method with the ```using bandito
 			return builder.Build();
 		}
 ```
+
+## banditoth.MAUI.JailbreakDetector
+
+![nuGet version](https://img.shields.io/nuget/vpre/banditoth.MAUI.JailbreakDetector)
+![Nuget](https://img.shields.io/nuget/dt/banditoth.MAUI.JailbreakDetector)
+[View package on NuGet.org](https://www.nuget.org/packages/banditoth.MAUI.JailbreakDetector/)
+
+A lightweight root and jailbreak detection algorithm for Android and iOS with .NET MAUI.
+
+**Usage**
+
+Configure your desired settings in the  ```CreateMauiApp``` method. See the possible configuration options at the Initalization section. You can dependency inject the jailbreak detector instance, by resolving an instance of ```IJailbreakDetector```. Check ```IsSupported()``` to make sure that the current platform supports the detection algorithm or not. If it is, you can use the detection methods.
+By calling ```IsRootedOrJailbrokenAsync()``` the boolean result will be evaluated with your configuration options. By calling ```ScanExploitsAsync``` you can process the discovered exploits and warnings during the scan - It returns a ```ScanResult```.
+```ScanResult``` has a property named ```PossibilityPercentage```. This percentage tells you how confidently you can tell whether a device has been jailbroken or rooted. Different types of tests contribute different weights to the final result. 
+
+**Initalization**
+
+```cs
+public static MauiApp CreateMauiApp()
+		{
+			var builder = MauiApp.CreateBuilder()
+				.UseMauiApp<App>()
+				...
+				.ConfigureJailbreakProtection(configuration =>
+				{
+					configuration.MaximumPossibilityPercentage = 20;
+					configuration.MaximumWarningCount = 1;
+					configuration.CanThrowException = true;
+				});
+			return builder.Build();
+		}
+```
+
 
 ## banditoth.MAUI.MVVM
 ![nuGet version](https://img.shields.io/nuget/vpre/banditoth.MAUI.MVVM)

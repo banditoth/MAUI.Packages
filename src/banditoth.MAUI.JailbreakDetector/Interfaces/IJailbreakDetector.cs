@@ -7,9 +7,9 @@ namespace banditoth.MAUI.JailbreakDetector.Interfaces
 	{
 		bool IsSupported();
 
-		ValueTask<bool> IsRootedOrJailbroken();
+		ValueTask<bool> IsRootedOrJailbrokenAsync();
 
-        ValueTask<ScanResult> GetVulnerabilities();
+        ValueTask<ScanResult> ScanExploitsAsync();
     }
 }
 

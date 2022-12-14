@@ -15,15 +15,15 @@
 		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'windows'">10.0.17763.0</SupportedOSPlatformVersion>
 		<TargetPlatformMinVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'windows'">10.0.17763.0</TargetPlatformMinVersion>
 		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'tizen'">6.5</SupportedOSPlatformVersion>
-		<AssemblyVersion>0.0.1.0</AssemblyVersion>
-		<AssemblyFileVersion>0.0.1.0</AssemblyFileVersion>
-		<Version>1.0.0-pre1</Version>
+		<AssemblyVersion>0.0.3.0</AssemblyVersion>
+		<AssemblyFileVersion>0.0.3.0</AssemblyFileVersion>
+		<Version>1.0.2-pre</Version>
 		<PackageVersion>$(Version)$(VersionSuffix)</PackageVersion>
 		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
 		<PackageId>banditoth.MAUI.JailbreakDetector</PackageId>
 		<Title>banditoth.MAUI.JailbreakDetector</Title>
-		<Description>Jailbreak and root detection for Android and iOS with .NET MAUI</Description>
-		<Summary>Jailbreak and root detection for Android and iOS with .NET MAUI</Summary>
+		<Description>A lightweight root and jailbreak detection algorithm for Android and iOS with .NET MAUI</Description>
+		<Summary>A lightweight root and jailbreak detection algorithm for Android and iOS with .NET MAUI</Summary>
 		<Owners>banditoth.net</Owners>
 		<Authors>banditoth</Authors>
 		<NeutralLanguage>en</NeutralLanguage>
@@ -37,7 +37,7 @@
 		<PackageIcon>icon.png</PackageIcon>
 		<Product>$(AssemblyName) ($(TargetFramework))</Product>
 		<PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
-		<PackageTags>dotnet,maui,multilingual,multilang,translation,multilanguage</PackageTags>
+		<PackageTags>dotnet,maui,jailbreak,root,superuser,su,jb,jailbreak detector</PackageTags>
 		<Configurations>Debug;Release</Configurations>
 	</PropertyGroup>
 	<ItemGroup>

@@ -17,7 +17,7 @@ namespace banditoth.MAUI.JailbreakDetector
             }
 
             builder.Services.TryAdd(new ServiceDescriptor(typeof(IJailbreakDetectorConfiguration), config));
-            builder.Services.TryAdd(new ServiceDescriptor(typeof(IJailbreakDetector), typeof(JailberakDetectorService)));
+            builder.Services.TryAddTransient(typeof(IJailbreakDetector), typeof(JailberakDetectorService));
 
             return builder;
         }
