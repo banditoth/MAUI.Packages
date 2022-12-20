@@ -1,10 +1,5 @@
-﻿using System;
-using System.Globalization;
-using System.Resources;
-using banditoth.MAUI.Multilanguage.Implementations;
+﻿using banditoth.MAUI.Multilanguage.Implementations;
 using banditoth.MAUI.Multilanguage.Interfaces;
-using Microsoft.Extensions.DependencyInjection.Extensions;
-using Microsoft.Maui.Hosting;
 
 namespace banditoth.MAUI.Multilanguage
 {
