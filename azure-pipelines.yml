@@ -18,7 +18,12 @@ variables:
 
 #The build has 3 seperate tasks run under 1 step
 steps:
-    
+
+- task: UseDotNet@2
+  inputs:
+    packageType: 'sdk'
+    version: '7.x'
+
 - task: NuGetCommand@2
   inputs:
     command: 'restore'
