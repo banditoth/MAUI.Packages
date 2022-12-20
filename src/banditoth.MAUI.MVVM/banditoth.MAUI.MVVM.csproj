@@ -45,6 +45,7 @@
 	  <None Remove="Platforms\MacCatalyst\" />
 	  <None Remove="Platforms\Tizen\" />
 	  <None Remove="Platforms\Windows\" />
+	  <None Remove="CommunityToolkit.Mvvm" />
 	</ItemGroup>
 	<ItemGroup>
 	  <Folder Include="Platforms\Android\" />
@@ -53,4 +54,11 @@
 	  <Folder Include="Platforms\Tizen\" />
 	  <Folder Include="Platforms\Windows\" />
 	</ItemGroup>
+	  <ItemGroup>
+    <None Include="readme.txt" pack="true" PackagePath="." />
+    <None Include="..\..\icon.png" PackagePath="icon.png" Pack="true" />
+  </ItemGroup>
+	  <ItemGroup>
+	    <PackageReference Include="CommunityToolkit.Mvvm" Version="8.0.0" />
+	  </ItemGroup>
 </Project>

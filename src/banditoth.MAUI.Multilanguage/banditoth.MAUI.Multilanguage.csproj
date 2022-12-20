@@ -40,17 +40,21 @@
 		<Configurations>Debug;Release</Configurations>
 	</PropertyGroup>
 	<ItemGroup>
-	  <None Remove="Platforms\Android\" />
-	  <None Remove="Platforms\iOS\" />
-	  <None Remove="Platforms\Tizen\" />
-	  <None Remove="Platforms\MacCatalyst\" />
-	  <None Remove="Platforms\Windows\" />
+		<None Remove="Platforms\Android\" />
+		<None Remove="Platforms\iOS\" />
+		<None Remove="Platforms\Tizen\" />
+		<None Remove="Platforms\MacCatalyst\" />
+		<None Remove="Platforms\Windows\" />
 	</ItemGroup>
 	<ItemGroup>
-	  <Folder Include="Platforms\Android\" />
-	  <Folder Include="Platforms\iOS\" />
-	  <Folder Include="Platforms\Tizen\" />
-	  <Folder Include="Platforms\MacCatalyst\" />
-	  <Folder Include="Platforms\Windows\" />
+		<Folder Include="Platforms\Android\" />
+		<Folder Include="Platforms\iOS\" />
+		<Folder Include="Platforms\Tizen\" />
+		<Folder Include="Platforms\MacCatalyst\" />
+		<Folder Include="Platforms\Windows\" />
+	</ItemGroup>
+	<ItemGroup>
+		<None Include="readme.txt" pack="true" PackagePath="." />
+		<None Include="..\..\icon.png" PackagePath="icon.png" Pack="true" />
 	</ItemGroup>
 </Project>

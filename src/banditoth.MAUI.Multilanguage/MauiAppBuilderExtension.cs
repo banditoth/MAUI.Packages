@@ -21,9 +21,9 @@ namespace banditoth.MAUI.Multilanguage
             MAUIServiceProviderWorkaround.TranslatorBinder = binder;
             // end of workaround
 
-            builder.Services.TryAddSingleton(typeof(ITranslatorSettings), svc => settings);
-            builder.Services.TryAddSingleton(typeof(ITranslator), svc => translator);
-            builder.Services.TryAddSingleton(typeof(TranslationBinder), svc => binder);
+            builder.Services.AddSingleton(typeof(ITranslatorSettings), svc => settings);
+            builder.Services.AddSingleton(typeof(ITranslator), svc => translator);
+            builder.Services.AddSingleton(typeof(TranslationBinder), svc => binder);
 
 
             return builder;
