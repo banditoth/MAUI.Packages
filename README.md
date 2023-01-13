@@ -11,6 +11,7 @@ A toolkit for .NET MAUI, containing useful stuff to ease development for MAUI ap
 | banditoth.MAUI.Multilanguage | ![nuGet version](https://img.shields.io/nuget/vpre/banditoth.MAUI.Multilanguage) | ✅ | ✅ | ✅ | ✅ | ✅ |
 | banditoth.MAUI.DeviceId | ![nuGet version](https://img.shields.io/nuget/vpre/banditoth.MAUI.DeviceId) |  ✅ | ✅ | ✅ | ✅ | ❌ |
 | banditoth.MAUI.JailbreakDetector | ![nuGet version](https://img.shields.io/nuget/vpre/banditoth.MAUI.JailbreakDetector) | ✅ | ✅ | ❌ | ❌ | ❌ |
+| banditoth.MAUI.PreferencesExtension | ![nuGet version](https://img.shields.io/nuget/vpre/banditoth.MAUI.PreferencesExtension) | ✅ | ✅ | ✅ | ✅ | ✅ |
 | banditoth.MAUI.MVVM | ![nuGet version](https://img.shields.io/nuget/vpre/banditoth.MAUI.MVVM) | ✅ | ✅ | ✅ | ✅ | ✅ |
 
 ### Azure DevOps
@@ -105,6 +106,10 @@ Use the ```.ConfigureMultilanguage``` extension method with the ```using bandito
 
 ## banditoth.MAUI.DeviceId
 
+![nuGet version](https://img.shields.io/nuget/vpre/banditoth.MAUI.DeviceId)
+![Nuget](https://img.shields.io/nuget/dt/banditoth.MAUI.DeviceId)
+[View package on NuGet.org](https://www.nuget.org/packages/banditoth.MAUI.DeviceId/)
+
 ### Initalization
 
 Initalize the plugin within your `MauiProgram.cs`'s `CreateMauiApp` method. Use the `.ConfigureDeviceIdProvider` extension method with the `using banditoth.MAUI.DeviceId`;
@@ -168,6 +173,67 @@ public static MauiApp CreateMauiApp()
 				});
 			return builder.Build();
 		}
+```
+
+## banditoth.MAUI.PreferencesExtension
+
+![nuGet version](https://img.shields.io/nuget/vpre/banditoth.MAUI.PreferencesExtension)
+![Nuget](https://img.shields.io/nuget/dt/banditoth.MAUI.PreferencesExtension)
+[View package on NuGet.org](https://www.nuget.org/packages/banditoth.MAUI.PreferencesExtension/)
+
+### Usage
+
+This code is extending the basic functions of the built in MAUI Essentials `IPreferences` by letting the developers to save any type of object.
+This is done by using JSON serialization, and saving the raw jsons as strings with the default `IPreferences` implementation. *Please consider saving large objects with it.*
+Since JSON arrays can be serialized back to any collection type, you can use different types when Setting the value and when Getting it back.
+
+*** 1. Method - Dependency injection ***
+
+If you used to dependency inject the `IPreferences` class, you can use this tool without any differencies. Call the `SetObject` or `GetObject` extension method on the IPreferences.
+
+```cs
+    private readonly IPreferences preferences;
+
+    public MainPage(IPreferences preferences)
+    {
+        InitializeComponent();
+        this.preferences = preferences;
+    }
+
+    private void Foo()
+    {
+        List<string> taleItems = new List<string>()
+        {
+            "The quick brown fox",
+            "Jumps over the lazy dog"
+        };
+
+        preferences.SetObject<List<string>>("Tale", taleItems);
+
+        string[] taleItemsFromPreferences = preferences.GetObject<string[]>("Tale", null);
+    }
+```
+
+*** 2. Method - Static preferences ***
+
+If you are used to access the preferences trough the `static class`, you can use this tool by accessing the `Default` property on the `Preferences` class. You can call the `SetObject` or `GetObject` extension method on it.
+
+```cs
+            // Setting the value
+            Preferences.Default.SetObject<IDeviceInfo>("Device_Information", DeviceInfo.Current);
+            // Getting the value
+            Preferences.Default.GetObject<IDeviceInfo>("Device_Information", null);
+```
+
+*** 3. Method - Custom static class ***
+
+You can also access the `SetObject` or `GetObject` method on `PreferencesExtension` static class. 
+
+```cs
+            // Setting the value
+            PreferencesExtension.SetObject<DisplayOrientation>("Last_Display_Orientation", orientation);
+            // Getting the value
+            PreferencesExtension.GetObject<DisplayOrientation>("Last_Display_Orientation", DisplayOrientation.Landscape);
 ```
 
 
