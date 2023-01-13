@@ -4,6 +4,6 @@ namespace banditoth.MAUI.DeviceId
 {
     public partial class DeviceIdProvider : IDeviceIdProvider
     {
-        public partial string GetDeviceId();
+        public string GetDeviceId() => throw new NotImplementedException();
     }
 }

@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Project Sdk="Microsoft.NET.Sdk">
 	<PropertyGroup>
 		<TargetFrameworks>net7.0;net7.0-android;net7.0-ios;net7.0-maccatalyst</TargetFrameworks>
@@ -14,6 +14,30 @@
 		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'windows'">10.0.17763.0</SupportedOSPlatformVersion>
 		<TargetPlatformMinVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'windows'">10.0.17763.0</TargetPlatformMinVersion>
 		<!--<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'tizen'">6.5</SupportedOSPlatformVersion>-->
+		<AssemblyVersion>0.0.1.0</AssemblyVersion>
+		<AssemblyFileVersion>0.0.1.0</AssemblyFileVersion>
+		<Version>0.0.1</Version>
+		<PackageVersion>$(Version)$(VersionSuffix)-pre</PackageVersion>
+		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+		<PackageId>banditoth.MAUI.DeviceId</PackageId>
+		<Title>banditoth.MAUI.DeviceId</Title>
+		<Description>A unique device id provider for .NET MAUI</Description>
+		<Summary>A unique device id provider for .NET MAUI</Summary>
+		<Owners>banditoth.net</Owners>
+		<Authors>banditoth</Authors>
+		<NeutralLanguage>en</NeutralLanguage>
+		<Product>MAUI.Packages (DeviceId)</Product>
+		<Copyright>© banditoth.net. All rights reserved.</Copyright>
+		<GitInfoReportImportance>high</GitInfoReportImportance>
+		<PackageProjectUrl>https://github.com/banditoth/MAUI.Packages</PackageProjectUrl>
+		<RepositoryUrl>https://github.com/banditoth/MAUI.Packages</RepositoryUrl>
+		<DefineConstants>$(DefineConstants);</DefineConstants>
+		<PackageLicenseExpression>MIT</PackageLicenseExpression>
+		<PackageIcon>icon.png</PackageIcon>
+		<Product>$(AssemblyName) ($(TargetFramework))</Product>
+		<PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
+		<PackageTags>dotnet,deviceid</PackageTags>
+		<Configurations>Debug;Release</Configurations>
 	</PropertyGroup>
 	<ItemGroup Condition="!$(TargetFramework.StartsWith('net6.0-android'))">
 		<Compile Remove="**/*.Android.cs" />
@@ -35,5 +59,8 @@
 	</ItemGroup>
 	<ItemGroup>
 		<Folder Include="Interfaces\" />
+	</ItemGroup>
+		<ItemGroup>
+		<None Include="..\..\icon.png" PackagePath="icon.png" Pack="true" />
 	</ItemGroup>
 </Project>

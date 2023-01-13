@@ -7,7 +7,7 @@ public partial class DeviceIdProvider
 {
     public partial string GetDeviceId()
     {
-        return Windows.System.Profile.SystemIdentification.GetSystemIdForPublisher()?.Id;
+        return Windows.System.Profile.SystemIdentification.GetSystemIdForPublisher()?.Id?.ToString();
     }
 }
 
