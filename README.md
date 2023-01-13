@@ -4,15 +4,16 @@
 
 A toolkit for .NET MAUI, containing useful stuff to ease development for MAUI applications.
 
-**Packages**
+### Packages
 
-| Package name | NuGet status |
-| --- | --- |
-| banditoth.MAUI.MVVM | ![nuGet version](https://img.shields.io/nuget/vpre/banditoth.MAUI.MVVM) |
-| banditoth.MAUI.Multilanguage | ![nuGet version](https://img.shields.io/nuget/vpre/banditoth.MAUI.Multilanguage) |
-| banditoth.MAUI.JailbreakDetector | ![nuGet version](https://img.shields.io/nuget/vpre/banditoth.MAUI.JailbreakDetector) |
+| Package name | NuGet status | Android | iOS | Windows | MacCatalyst | Tizen |
+| --- | --- | --- | --- | --- | --- | --- |
+| banditoth.MAUI.Multilanguage | ![nuGet version](https://img.shields.io/nuget/vpre/banditoth.MAUI.Multilanguage) | ✅ | ✅ | ✅ | ✅ | ✅ |
+| banditoth.MAUI.DeviceId | ![nuGet version](https://img.shields.io/nuget/vpre/banditoth.MAUI.DeviceId) |  ✅ | ✅ | ✅ | ✅ | ❌ |
+| banditoth.MAUI.JailbreakDetector | ![nuGet version](https://img.shields.io/nuget/vpre/banditoth.MAUI.JailbreakDetector) | ✅ | ✅ | ❌ | ❌ | ❌ |
+| banditoth.MAUI.MVVM | ![nuGet version](https://img.shields.io/nuget/vpre/banditoth.MAUI.MVVM) | ✅ | ✅ | ✅ | ✅ | ✅ |
 
-**Azure DevOps**
+### Azure DevOps
 
 [![Build Status](https://dev.azure.com/bitfoxhungary/MAUI.Packages/_apis/build/status/banditoth.MAUI.Packages?branchName=main)](https://dev.azure.com/bitfoxhungary/MAUI.Packages/_build/latest?definitionId=8&branchName=main)
 
@@ -26,16 +27,16 @@ A toolkit for .NET MAUI, containing useful stuff to ease development for MAUI ap
 
 A multilanguage translation provider for XAML and for code behind.
 
-**Tutorial**
+### Tutorial
 
 A full tutorial can be found here [https://www.banditoth.net/2022/08/29/net-maui-write-multilingual-apps-easily/](https://www.banditoth.net/2022/08/29/net-maui-write-multilingual-apps-easily/)
 
-**Usage**
+### Usage
 
 Create your ```resx``` files in your solution. For example if your applications default language is English, create a ```Translations.en.resx``` file, which contains the english translations, and if you want to support Hungarian language, you need to create a ```Translations.hu.resx``` file, which will contain the hungarian key value pairs.
 You can add different resx files, also from different assembly. Just call the ```UseResource``` when initalizing the plugin multiple times.
 
-Usage in cs files:
+***Usage in cs files:***
 Inject or resolve an ITranslator instance from the dependency continaer.
 
 ```cs
@@ -52,7 +53,8 @@ public string Foo()
 ```
 
 
-Usage in XAML files:
+***Usage in XAML files:***
+  
 Start using translations in your XAML by adding reference to the ```clr-namespace``` and using the markup extension:
 
 ```xml
@@ -66,7 +68,7 @@ Whenever you need a translation, you can use:
        Text="{multilanguage:Translation Key=TranslationKey}"/>
 ```
 
-**Initalization**
+### Initalization
 
 Initalize the plugin within your ```MauiProgram.cs```'s ```CreateMauiApp``` method.
 Use the ```.ConfigureMultilanguage``` extension method with the ```using banditoth.MAUI.Multilanguage```;
@@ -101,6 +103,41 @@ Use the ```.ConfigureMultilanguage``` extension method with the ```using bandito
 		}
 ```
 
+## banditoth.MAUI.DeviceId
+
+### Initalization
+
+Initalize the plugin within your `MauiProgram.cs`'s `CreateMauiApp` method. Use the `.ConfigureDeviceIdProvider` extension method with the `using banditoth.MAUI.DeviceId`;
+
+```cs
+    public static MauiApp CreateMauiApp()
+    {
+        var builder = MauiApp.CreateBuilder();
+        builder
+            .UseMauiApp<App>()
+            .ConfigureFonts(fonts =>
+            {
+                fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
+                fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
+            })
+            .ConfigureDeviceIdProvider();
+#if DEBUG
+        builder.Logging.AddDebug();
+#endif
+
+        return builder.Build();
+    }
+```
+
+### Usage
+
+Use the code with by resolving an instance of `IDeviceIdProvider`.
+
+The `GetDeviceId` method returns an unique device identifier. On Android it serves the data from `AndroidId`, on iOS and MacCatalyst it uses the `IdentifierForVendor`. Windows returns the `GetSystemIdForPublisher().Id` as a string.
+
+The `GetInstallationId` method generates an unique identifier for the application, which will be stored until the application is being reinstalled, or the application's data being erased.
+
+
 ## banditoth.MAUI.JailbreakDetector
 
 ![nuGet version](https://img.shields.io/nuget/vpre/banditoth.MAUI.JailbreakDetector)
@@ -109,13 +146,13 @@ Use the ```.ConfigureMultilanguage``` extension method with the ```using bandito
 
 A lightweight root and jailbreak detection algorithm for Android and iOS with .NET MAUI.
 
-**Usage**
+### Usage
 
-Configure your desired settings in the  ```CreateMauiApp``` method. See the possible configuration options at the Initalization section. You can dependency inject the jailbreak detector instance, by resolving an instance of ```IJailbreakDetector```. Check ```IsSupported()``` to make sure that the current platform supports the detection algorithm or not. If it is, you can use the detection methods.
-By calling ```IsRootedOrJailbrokenAsync()``` the boolean result will be evaluated with your configuration options. By calling ```ScanExploitsAsync``` you can process the discovered exploits and warnings during the scan - It returns a ```ScanResult```.
-```ScanResult``` has a property named ```PossibilityPercentage```. This percentage tells you how confidently you can tell whether a device has been jailbroken or rooted. Different types of tests contribute different weights to the final result. 
+Configure your desired settings in the  `CreateMauiApp` method. See the possible configuration options at the Initalization section. You can dependency inject the jailbreak detector instance, by resolving an instance of `IJailbreakDetector`. Check `IsSupported()` to make sure that the current platform supports the detection algorithm or not. If it is, you can use the detection methods.
+By calling `IsRootedOrJailbrokenAsync()` the boolean result will be evaluated with your configuration options. By calling `ScanExploitsAsync` you can process the discovered exploits and warnings during the scan - It returns a `ScanResult`.
+`ScanResult` has a property named `PossibilityPercentage`. This percentage tells you how confidently you can tell whether a device has been jailbroken or rooted. Different types of tests contribute different weights to the final result. 
 
-**Initalization**
+### Initalization
 
 ```cs
 public static MauiApp CreateMauiApp()
@@ -141,7 +178,7 @@ public static MauiApp CreateMauiApp()
 
 A ViewModel first driven MVVM Library.
 
-**Usage**
+### Usage
 
 If you want to get an instance of a page, just simply inject or resolve an ```INavigator``` instance and call
 
@@ -176,7 +213,7 @@ You can override the following methods in the derived viewmodel classes, which g
 - ```OnBackButtonPressed```
 The View's ```Navigation``` property is automatically passed to the ViewModel's ```Navigation``` property
 
-**Initalization**
+### Initalization
 
 Initalize the plugin within your ```MauiProgram.cs```'s ```CreateMauiApp``` method.
 Use the ```.ConfigureMvvm``` extension method with the ```using banditoth.MAUI.MVVM```;
