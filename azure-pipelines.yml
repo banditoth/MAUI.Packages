@@ -24,6 +24,10 @@ steps:
     packageType: 'sdk'
     version: '7.x'
 
+- task: DotNetCoreCLI@2
+  inputs:
+    command: 'custom'
+    custom: 'workload install maui'
 
     
 - task: DotNetCoreCLI@2
