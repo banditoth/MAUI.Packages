@@ -13,6 +13,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "banditoth.MAUI.DeviceId", "
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "banditoth.MAUI.PreferencesExtension", "banditoth.MAUI.PreferencesExtension\banditoth.MAUI.PreferencesExtension.csproj", "{62C296E2-CD46-4606-99AF-64C57FF1725A}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "banditoth.MAUI.FontIcons", "banditoth.MAUI.FontIcons\banditoth.MAUI.FontIcons.csproj", "{AABB20FE-2E05-4F15-BCFA-C726A9AD2E49}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +41,10 @@ Global
 		{62C296E2-CD46-4606-99AF-64C57FF1725A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{62C296E2-CD46-4606-99AF-64C57FF1725A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{62C296E2-CD46-4606-99AF-64C57FF1725A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AABB20FE-2E05-4F15-BCFA-C726A9AD2E49}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AABB20FE-2E05-4F15-BCFA-C726A9AD2E49}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AABB20FE-2E05-4F15-BCFA-C726A9AD2E49}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AABB20FE-2E05-4F15-BCFA-C726A9AD2E49}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
