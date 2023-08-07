@@ -59,6 +59,6 @@
     <None Include="..\..\icon.png" PackagePath="icon.png" Pack="true" />
   </ItemGroup>
 	  <ItemGroup>
-	    <PackageReference Include="CommunityToolkit.Mvvm" Version="8.0.0" />
+	    <PackageReference Include="CommunityToolkit.Mvvm" Version="8.2.1" />
 	  </ItemGroup>
 </Project>
