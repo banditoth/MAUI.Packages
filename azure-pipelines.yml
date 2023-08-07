@@ -17,12 +17,23 @@ steps:
       script: 'dotnet workload install maui'
 
   - task: DotNetCoreCLI@2
+    displayName: 'Restore NuGet packages'
+    inputs:
+      command: 'restore'
+      projects: 'src/banditoth.MAUI.sln'
+
+  - task: DotNetCoreCLI@2
     displayName: 'Build packages'
     inputs:
-      command: 'pack'
-      configuration: 'Release'
+      command: 'build'
       projects: 'src/banditoth.MAUI.sln'
-      packDirectory: $(Build.ArtifactStagingDirectory)
+
+  - task: CopyFiles@2
+    displayName: 'Copy nupkgs to output directory'
+    inputs:
+      SourceFolder: '$(Build.BinariesDirectory)'
+      Contents: '**/*.nupkg'
+      TargetFolder: '$(Build.ArtifactStagingDirectory)'
 
   - task: PublishBuildArtifacts@1
     displayName: 'Publish built pacakges'
