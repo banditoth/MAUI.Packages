@@ -11,3 +11,4 @@ updates:
   directory: “/” 
   # Check the nuget registry for updates every day (weekdays) schedule: 
   interval: “daily"
+
