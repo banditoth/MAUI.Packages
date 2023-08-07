@@ -1,6 +1,9 @@
 trigger:
 - main
 
+pool:
+  vmImage: 'macos-latest'
+
 steps:
   - task: UseDotNet@2
     displayName: 'Use .NET 7.0'
