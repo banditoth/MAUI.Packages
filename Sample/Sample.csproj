@@ -59,8 +59,8 @@
 	  <None Remove="AnotherLibrary\obj\Debug\netstandard2.1\AnotherLibrary.csproj.AssemblyReference.cache" />
 	</ItemGroup>
 	<ItemGroup>
-	  <PackageReference Include="banditoth.MAUI.MVVM" Version="1.0.0-pre1" />
-	  <PackageReference Include="banditoth.MAUI.Multilanguage" Version="1.0.0-pre2" />
+	  <PackageReference Include="banditoth.MAUI.MVVM" Version="1.0.1" />
+	  <PackageReference Include="banditoth.MAUI.Multilanguage" Version="1.0.6" />
 	</ItemGroup>
 	<ItemGroup>
 	  <Folder Include="ViewModels\" />

@@ -5,8 +5,7 @@ using Microsoft.Maui.Controls;
 
 namespace banditoth.MAUI.MVVM.Entities
 {
-	[INotifyPropertyChanged]
-	public partial class BaseViewModel
+	public partial class BaseViewModel : ObservableObject
 	{
 		public INavigation Navigation { get; private set; }
 
