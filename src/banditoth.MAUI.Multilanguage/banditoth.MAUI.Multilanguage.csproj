@@ -4,9 +4,9 @@
 		<TargetFrameworks>net9.0-android;net9.0-ios;net9.0-maccatalyst;net9.0-windows</TargetFrameworks>
 		<SingleProject>true</SingleProject>
 		<ImplicitUsings>enable</ImplicitUsings>
-		<AssemblyVersion>1.0.6.0</AssemblyVersion>
-		<AssemblyFileVersion>1.0.6.0</AssemblyFileVersion>
-		<Version>1.0.6</Version>
+		<AssemblyVersion>1.0.7.0</AssemblyVersion>
+		<AssemblyFileVersion>1.0.7.0</AssemblyFileVersion>
+		<Version>1.0.7</Version>
 		<PackageVersion>$(Version)$(VersionSuffix)</PackageVersion>
 		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
 		<PackageId>banditoth.MAUI.Multilanguage</PackageId>
